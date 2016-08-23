@@ -5,6 +5,8 @@
  */
 package ejercicio;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DanielDeJesus
@@ -27,21 +29,107 @@ public class Interfaz13 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNPersonas = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtMPagar = new javax.swing.JTextField();
+        cmdCalcular = new javax.swing.JButton();
+        cmdBorrar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        jLabel1.setText("Ejercicio Número 13: Monto a pagar por un tour a cartagena");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        jLabel2.setText("Nº de personas:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
+
+        txtNPersonas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNPersonasKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNPersonas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 70, -1));
+
+        jLabel3.setText("Monto total a pagar:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, -1, -1));
+
+        txtMPagar.setEditable(false);
+        jPanel1.add(txtMPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 70, -1));
+
+        cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+
+        cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+        txtNPersonas.setText("");
+        txtMPagar.setText("");
+        
+        txtNPersonas.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtNPersonasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNPersonasKeyTyped
+        char c=evt.getKeyChar();
+        
+        if(!Character.isDigit(c)){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNPersonasKeyTyped
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+        String res;
+        double nPersonas, op, op2, op3;
+        
+        if(txtNPersonas.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Digite el Nº de personas", "Error", JOptionPane.ERROR_MESSAGE);
+            txtNPersonas.requestFocusInWindow();
+        }
+        else{
+            
+            nPersonas = Double.parseDouble(txtNPersonas.getText());
+            
+            op = nPersonas * 25000;
+            op2 = op * 0.12;
+            op3 = op + op2;
+            
+            res = String.valueOf(op3);
+            txtMPagar.setText(res);
+            
+        }
+        
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +167,13 @@ public class Interfaz13 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cmdBorrar;
+    private javax.swing.JButton cmdCalcular;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtMPagar;
+    private javax.swing.JTextField txtNPersonas;
     // End of variables declaration//GEN-END:variables
 }
